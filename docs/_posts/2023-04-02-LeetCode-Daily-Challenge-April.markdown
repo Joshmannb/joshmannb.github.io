@@ -213,3 +213,66 @@ class Solution:
             left += 1
         return res
 ```
+
+---
+
+## Optimal Partition of String (2405)
+
+#### 问题描述
+
+- Given a string `s`, partition the string into one or more substrings such that the characters in each substring are unique. That is, no letter appears in a single substring more than once.
+
+- Return the minimum number of substrings in such a partition.
+
+- Note that each character should belong to exactly one substring in a partition. 
+
+##### Example 1:
+
+```
+Input: s = "abacaba"
+Output: 4
+Explanation:
+Two possible partitions are ("a","ba","cab","a") and ("ab","a","ca","ba").
+It can be shown that 4 is the minimum number of substrings needed.
+```
+
+##### Example 2:
+
+```
+Input: s = "ssssss"
+Output: 6
+Explanation:
+The only valid partition is ("s","s","s","s","s","s").
+ ```
+
+##### Constraints:
+
+- `1 <= s.length <= 1e5`
+- `s` consists of only English lowercase letters.
+
+#### 解题思路
+
+- 贪心算法
+  - 题目求解的是`最少个数的不含重复字符的连续子字串`，这要求每个字子串都尽可能要长。
+  - 初始化一个`set`来记录已经看过的字符，遍历输入的字符串，当遇到已经出现过的字符后将`set`清空并将结果+1。
+
+#### 时间复杂度
+
+- 遍历字符串: $$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def partitionString(self, s: str) -> int:
+        vis = set()
+        output = 1
+        
+        for idx, letter in enumerate(s):
+            if letter in vis:
+                output += 1
+                vis.clear()
+            vis.add(letter)
+            
+        return output
+```
