@@ -8,6 +8,7 @@ katex: true
 author:
     name: 陈家惠
     picture: "/images/avatar.jpg"
+category_archive_path: "/categories/"
 ---
 
 This post is for LeetCode Daily Challenge April
