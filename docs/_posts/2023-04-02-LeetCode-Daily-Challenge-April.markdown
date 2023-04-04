@@ -3,7 +3,6 @@ layout: post
 title:  "LeetCode Daily Challenge April"
 date:   2023-04-02 13:16:49 +0800
 categories: LeetCode Algorithm
-# usemathjax: true
 katex: true
 author:
     name: 陈家惠
