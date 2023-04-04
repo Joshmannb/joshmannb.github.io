@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Template for posts"
+date:   2023-04-03 13:16:49 +0800
+categories: Template
+hidden: true
+katex: true
+author:
+    name: 陈家惠
+    picture: "/images/avatar.jpg"
+# category_archive_path: "/categories/"
+---
+## Insert markdown content below :
