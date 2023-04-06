@@ -345,3 +345,57 @@ class Solution:
             output = max(output, math.ceil(prefixSum / (i + 1)))
         return output
 ```
+
+## Number of Closed Islands (1254)
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/number-of-closed-islands/description/)
+
+#### 解题思路
+
+- DFS
+  - 循环遍历整个`grid`，且在当前为`land`时进行DFS
+    - 将DFS触及到的`land`转为`water`，防止重复访问
+    - 对`上下左右`的地方进行DFS，若碰到边界，则本次DFS所经过的land不是`island`
+    - 若该次DFS结束也只能碰到water，则DFS过的地方为一块`land`，结果+1
+    - 通过`cache`将已经访问过的状态作缓存，加速代码运行
+- 注：在DFS进行过程中，要等DFS将所有路径都走过再return，否则会出错
+
+#### 时间复杂度
+
+- DFS: $$O(mn)$$
+
+#### 代码
+
+```python
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        @cache
+        def dfs(row, col):
+            grid[row][col] = 1
+            flag = False
+            for i, j in dirs:
+                newRow, newCol = row + i, col + j
+                if not 0 <= newRow < m or not 0 <= newCol < n:
+                    flag = True
+                    continue
+                if grid[newRow][newCol] == 1:
+                    continue
+                if dfs(newRow, newCol):
+                    flag = True
+            return flag
+
+        output = 0
+        for row in range(m):
+            for col in range(n):
+                if grid[row][col] == 0:
+                    if dfs(row, col):
+                        continue
+                    else:
+                        output += 1
+        return output
+```

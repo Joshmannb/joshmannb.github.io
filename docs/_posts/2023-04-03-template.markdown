@@ -10,4 +10,4 @@ author:
     picture: "/images/avatar.jpg"
 # category_archive_path: "/categories/"
 ---
-## Insert markdown content below :
+## Insert markdown content below:
