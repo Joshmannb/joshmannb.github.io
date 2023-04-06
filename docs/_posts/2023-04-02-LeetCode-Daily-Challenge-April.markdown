@@ -358,7 +358,7 @@ class Solution:
   - 循环遍历整个`grid`，且在当前为`land`时进行DFS
     - 将DFS触及到的`land`转为`water`，防止重复访问
     - 对`上下左右`的地方进行DFS，若碰到边界，则本次DFS所经过的land不是`island`
-    - 若该次DFS结束也只能碰到water，则DFS过的地方为一块`land`，结果+1
+    - 若该次DFS结束也只能碰到water，则DFS过的地方为一块`island`，结果+1
     - 通过`cache`将已经访问过的状态作缓存，加速代码运行
 - 注：在DFS进行过程中，要等DFS将所有路径都走过再return，否则会出错
 
