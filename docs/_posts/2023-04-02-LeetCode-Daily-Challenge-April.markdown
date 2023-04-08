@@ -400,6 +400,56 @@ class Solution:
         return output
 ```
 
+## Number of Enclaves (1020)
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/number-of-enclaves/description/)
+
+#### 解题思路
+
+- DFS
+  - 本题与`1254`极为相似，区别为`1254`求解的是不与边界接触的`island`数，而本题求解的是各个`island`面积之和。
+  - 求解过程与`1254`形似，只要在DFS过程中记录走过的路径长度
+
+#### 时间复杂度
+
+- DFS: $$O(mn)$$
+
+#### 代码
+
+```python
+class Solution:
+    def numEnclaves(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        output = 0
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        
+        @cache
+        def dfs(row, col):
+            output = 1
+            grid[row][col] = 0
+            flag = False
+            for i, j in dirs:
+                newRow, newCol = row + i, col + j
+                if not 0 <= newRow < m or not 0 <= newCol < n:
+                    flag = True
+                    continue
+                if grid[newRow][newCol] == 0:
+                    continue
+                if (adj := dfs(newRow, newCol)) == 0:
+                    flag = True
+                output += adj
+            return output if not flag else 0
+        
+        for row in range(m):
+            for col in range(n):
+                if grid[row][col] == 0:
+                    continue
+                output += dfs(row, col)
+        return output
+```
+
 ## Clone Graph (133)
 
 #### 问题描述
