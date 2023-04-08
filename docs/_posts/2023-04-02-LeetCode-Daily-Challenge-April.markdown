@@ -411,6 +411,7 @@ class Solution:
 - **BFS**:
   - 通过`BFS`遍历整个输入graph，并同时`clone`新的graph。
   - 在遍历的过程中通过`vis`记录遍历输入graph的情况，通过`check`记录clone graph的重建情况。
+  
 #### 时间复杂度
 
 - BFS遍历graph：$$O(V + E)$$
