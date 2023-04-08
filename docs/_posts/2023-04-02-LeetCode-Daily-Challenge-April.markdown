@@ -399,3 +399,44 @@ class Solution:
                         output += 1
         return output
 ```
+
+## Clone Graph (133)
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/clone-graph/description/)
+
+#### 解题思路
+
+- **BFS**:
+  - 通过`BFS`遍历整个输入graph，并同时`clone`新的graph。
+  - 在遍历的过程中通过`vis`记录遍历输入graph的情况，通过`check`记录clone graph的重建情况。
+#### 时间复杂度
+
+- BFS遍历graph：$$O(V + E)$$
+
+#### 代码
+
+```python
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if not node:
+            return None
+        start = Node(val=node.val)
+        check = defaultdict()
+        check[node] = start
+        dq = deque([node])
+        vis = set([node])
+        while dq:
+            for _ in range(len(dq)):
+                now = dq.popleft()
+                for adj in now.neighbors:
+                    newAdj = Node(val=adj.val) if not adj in check.keys() else check[adj] 
+                    check[adj] = newAdj
+                    check[now].neighbors.append(newAdj)
+                    if adj in vis:
+                        continue
+                    dq.append(adj)
+                    vis.add(adj)
+        return start
+```
