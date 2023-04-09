@@ -491,3 +491,55 @@ class Solution:
                     vis.add(adj)
         return start
 ```
+
+## Largest Color Value in a Directed Graph (1857)
+
+#### 难度
+
+- `hard`
+
+#### 题目描述
+
+- [LeetCode](https://leetcode.com/problems/largest-color-value-in-a-directed-graph/description/)
+
+#### 解题思路
+
+- **拓扑排序** (Kahn's Algorithm)：
+  - [扩展阅读：拓扑排序](https://en.wikipedia.org/wiki/Topological_sorting)
+  - 本题可转换为DP问题，对于一个`indegree`为`n`的节点`x`来说，以`x`为路径终点的路径为各个指向`x`的且`indegree`为`n-1`的节点所表达的路径的极值再加上节点`x`。
+  - 先将`nodes`作拓扑排序后，从`indegree`为0的节点开始遍历graph，去除`indegree`为0的节点的同时将指向的节点的`indegree`-1，且之后若为0则加入遍历的`queue`。
+  - 若遍历结束后还有节点的`indegree`还不等于0，则证明该图内有环存在。
+
+#### 时间复杂度
+
+- 拓扑排序遍历graph: $$O(m + n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
+        graph = defaultdict(set)
+        indegrees = [0 for _ in range(len(colors))]
+        for start, target in edges:
+            graph[start].add(target)
+            indegrees[target] += 1
+        potential = [x for x in range(len(colors)) if indegrees[x] == 0]
+        dq = deque(potential)
+        colorKeep = defaultdict(lambda: defaultdict(lambda: 0))
+        for i in range(len(colors)):
+            colorKeep[i][colors[i]] += 1
+        res = 1
+        count = 0
+        while dq:
+            node = dq.popleft()
+            count += 1
+            for adj in graph[node]:
+                indegrees[adj] -= 1
+                if indegrees[adj] == 0:
+                    dq.append(adj)
+                for color in set(colorKeep[node].keys()).union(set(colorKeep[adj].keys())):
+                    colorKeep[adj][color] = max(colorKeep[node][color], colorKeep[adj][color]) if color != colors[adj] else max(colorKeep[node][color] + 1, colorKeep[adj][color])
+                res = max(res, max(colorKeep[adj].values()))
+        return res if count == len(colors) else -1
+```
