@@ -543,3 +543,44 @@ class Solution:
                 res = max(res, max(colorKeep[adj].values()))
         return res if count == len(colors) else -1
 ```
+
+## Valid Parentheses (20)
+
+#### 难度
+
+- `easy`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/valid-parentheses/description/)
+
+#### 解题思路
+
+- 模拟栈：
+  - 遍历输入`s`:
+    - 若输入为开括号：将输入入栈
+    - 若输入为闭括号：
+      - 此时若栈为空，证明无与其匹配的开括号
+      - 若栈顶的开括号不匹配，则证明该输入不成立
+
+#### 时间复杂度
+
+- 遍历输入`s`: $$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        check = {'(': ')', '{': '}', '[': ']'}
+        for i in range(len(s)):
+            if s[i] in check.keys():
+                stack.append(s[i])
+            else:
+                if not stack or s[i] != check[stack[-1]]:
+                    return False
+                if s[i] == check[stack[-1]]:
+                    stack.pop()
+        return len(stack) == 0
+```
