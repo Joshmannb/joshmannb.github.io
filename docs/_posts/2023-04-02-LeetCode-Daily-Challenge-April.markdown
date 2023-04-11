@@ -584,3 +584,62 @@ class Solution:
                     stack.pop()
         return len(stack) == 0
 ```
+
+## Removing Stars From a String (2390)
+
+#### 难度
+
+- `Medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/removing-stars-from-a-string/)
+
+#### 解题思路
+
+- 模拟栈
+  - 遍历输入`s`:
+    - 若输入非`*`，将输入入栈
+    - 若输入为`*`，则将栈顶的元素弹出（若存在的话）
+  
+#### 时间复杂度
+
+- 遍历输入：$$O(n)$$
+
+#### 代码
+
+- python
+
+```python
+class Solution:
+    def removeStars(self, s: str) -> str:
+        stack = []
+        for letter in s:
+            if letter != '*':
+                stack.append(letter)
+                continue
+            if stack:
+                stack.pop()
+        return ''.join(stack)
+```
+
+- c++
+
+```c++
+class Solution {
+public:
+    string removeStars(string s) {
+        string res;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] != '*') {
+                res.push_back(s[i]);
+                continue;
+            }
+            if (!res.empty()) {
+                res.pop_back();
+            }
+        }
+        return res;
+    }
+};
+```
