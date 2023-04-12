@@ -643,3 +643,72 @@ public:
     }
 };
 ```
+
+## Simplify Path (71)
+
+#### 难度
+
+- `Medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/simplify-path/description/)
+
+#### 解题思路
+
+- 栈
+  - 用栈来模拟当前路径
+  - 将输入字符串以`/`进行分割后
+    - 若分割字符串为空或为`.`则无操作
+    - 若分割字符串为`..`且栈非空，则弹出栈顶元素（回到父路径）
+    - 否则就将当前分割字符串入栈
+  
+#### 时间复杂度
+
+- 遍历字符串：$$O(n)$$
+
+#### 代码
+
+- python
+
+```python
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack = []
+        for word in path.split('/'):
+            if word == '.' or not word:
+                continue
+            if word == '..':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(word)
+        return '/' + '/'.join(stack)
+```
+
+- c++
+
+```c++
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string temp;
+        vector<string> stk;
+        stringstream ss(path);
+        while (getline(ss, temp, '/')) {
+            if (temp.empty() || temp == ".") continue;
+            if (temp == "..") {
+                if (!stk.empty()) stk.pop_back();
+                continue;
+            }
+            stk.push_back(temp);
+        }
+
+        string res;
+        for (string temp: stk) {
+            res += "/" + temp;
+        }
+        return res.empty() ? "/" : res;
+    }
+};
+```
