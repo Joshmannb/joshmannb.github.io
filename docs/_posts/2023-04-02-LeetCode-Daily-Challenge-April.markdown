@@ -712,3 +712,62 @@ public:
     }
 };
 ```
+
+## Validate Stack Sequences (946)
+
+#### 难度
+
+- `Medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/validate-stack-sequences/description/)
+
+#### 解题思路
+
+- 模拟栈：
+  - 模拟栈的推入与弹出，记录当前应弹出的元素
+  - 若栈顶为该弹出的元素，则弹出
+  - 若遍历后栈非空，则输入的顺序不成立
+
+#### 时间复杂度
+
+- 遍历输入：$$O(n)$$
+
+#### 代码
+
+- python
+
+```python
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = deque()
+        popPtr = 0
+        length = len(pushed)
+        for val in pushed:
+            stack.append(val)
+            while stack and popped[popPtr] == stack[-1]:
+                stack.pop()
+                popPtr += 1
+        return len(stack) == 0
+```
+
+- c++
+
+```c++
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        vector<int> stk;
+        int popIdx = 0;
+        for (int pushNum: pushed) {
+            stk.push_back(pushNum);
+            while (!stk.empty() && stk.back() == popped[popIdx] && popIdx < popped.size()) {
+                stk.pop_back();
+                popIdx++;
+            }
+        }
+        return stk.empty();
+    }
+};
+```
