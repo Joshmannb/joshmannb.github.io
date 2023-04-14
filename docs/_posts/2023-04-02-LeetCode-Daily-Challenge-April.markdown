@@ -771,3 +771,70 @@ public:
     }
 };
 ```
+
+---
+
+## Longest Palindromic Subsequence (516)
+
+#### 难度
+
+- `Medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
+#### 解题思路
+
+- 该题的暴力解法为组合问题，时间复杂度为 $$O(2^{n})$$ ，在题目的限制条件下会`TLE`。
+- 用`DP`减小时间复杂度
+  - 对于`top-down dp`而言：
+    - 我们求解`left -> right`范围内的答案，若`left`与`right`所指的字符相同，则答案为`2 + (left -> right)`范围内的答案。
+    - 若`left == right`，则当前范围内只有一个字符，故返回1。
+    - 若`left < right`，则当前范围内无字符，故返回0。
+    - 若`left`与`right`内所指的字符不同，则答案为`left + 1 -> right`与`left -> right - 1`两种情况中的较大值。
+  - `bottom-up dp`思路相同，但是是从小范围到大范围。
+
+#### 时间复杂度
+
+- 二维DP：$$O(n^{2})$$
+
+#### 代码
+
+- bottom-up dp
+
+```python
+class Solution: # type: ignore
+    def longestPalindromeSubseq(self, s: str) -> int:
+        length = len(s)
+        dp = [[0 for x in range(length)] for y in range(length)]
+        for i in range(length):
+            dp[i][i] = 1
+        for j in range(length):
+            for i in range(j - 1, -1, -1):
+                if s[j] == s[i]:
+                    dp[i][j] = dp[i+1][j-1] + 2
+                else:
+                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+        return dp[0][length-1]
+```
+
+- top-down dp
+
+```python
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        length = len(s)
+
+        @cache
+        def dfs(left, right):
+            if left > right:
+                return 0
+            if left == right:
+                return 1
+            if s[left] == s[right]:
+                return dfs(left + 1, right - 1) + 2
+            return max(dfs(left + 1, right), dfs(left, right - 1))
+        
+        return dfs(0, length - 1)
+```
