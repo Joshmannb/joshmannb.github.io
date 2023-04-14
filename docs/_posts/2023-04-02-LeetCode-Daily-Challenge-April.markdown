@@ -789,7 +789,7 @@ public:
 - 该题的暴力解法为组合问题，时间复杂度为 $$O(2^{n})$$ ，在题目的限制条件下会`TLE`。
 - 用`DP`减小时间复杂度
   - 对于`top-down dp`而言：
-    - 我们求解`left -> right`范围内的答案，若`left`与`right`所指的字符相同，则答案为`2 + (left -> right)`范围内的答案。
+    - 我们求解`left -> right`范围内的答案，若`left`与`right`所指的字符相同，则答案为`2 + (left + 1 -> right - 1)`范围内的答案。
     - 若`left == right`，则当前范围内只有一个字符，故返回1。
     - 若`left < right`，则当前范围内无字符，故返回0。
     - 若`left`与`right`内所指的字符不同，则答案为`left + 1 -> right`与`left -> right - 1`两种情况中的较大值。
