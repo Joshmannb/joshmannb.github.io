@@ -838,3 +838,97 @@ class Solution:
         
         return dfs(0, length - 1)
 ```
+
+---
+
+## Maximum Value of K Coins From Piles (2218)
+
+#### TODO
+
+---
+
+## Number of Ways to Form a Target String Given a Dictionary (1639)
+
+#### TODO
+
+---
+
+## Kids With the Greatest Number of Candies (1431)
+
+#### 难度
+
+- `easy`
+
+#### 提目描述
+
+- [LeetCode](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)
+
+#### 解题思路
+
+- 遍历输入找到`candies`的最大值。
+- 遍历输入判断每个`candy`再加上`extra candy`后是否大于最大值。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```c++
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        int maxCandies = 0;
+        for (int candy: candies) maxCandies = max(maxCandies, candy);
+        vector<bool> res;
+        for (int candy: candies) res.push_back(candy + extraCandies >= maxCandies);
+        return res;
+    }
+};
+```
+
+---
+
+## Merge Strings Alternately (1768)
+
+#### 难度
+
+- `easy`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/merge-strings-alternately/)
+
+#### 解题思路
+
+- 用两个指针记录输入的情况
+
+#### 复杂度
+
+- 时间复杂度：$$O(m + n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```c++
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        string res;
+        int idx1 = 0, idx2 = 0;
+        while (idx1 < word1.size() || idx2 < word2.size()) {
+            if (idx1 < word1.size()) {
+                res.push_back(word1[idx1]);
+                idx1++;
+            }
+            if (idx2 < word2.size()) {
+                res.push_back(word2[idx2]);
+                idx2++;
+            }
+        }
+        
+        return res;
+    }
+};
+```
