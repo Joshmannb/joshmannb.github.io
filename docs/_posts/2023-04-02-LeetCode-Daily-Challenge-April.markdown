@@ -932,3 +932,81 @@ public:
     }
 };
 ```
+
+---
+
+## Longest ZigZag Path in a Binary Tree (1372)
+
+#### 难度
+
+- `medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/)
+
+#### 解题思路
+
+- DFS遍历tree
+  - DFS的过程中记录到当前`state`时是从哪个方向过来的，以及到此时`zigzag`路径的长度
+  - 当DFS到子节点时，若方向可形成`zigzag`，则长度+1，反之长度为1
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+- python
+
+```python
+class Solution:
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        length = 0
+
+        def dfs(node, fromNode, steps):
+            if not node:
+                return
+            nonlocal length
+            length = max(steps, length)
+            if fromNode == 'left':
+                if node.left:
+                    dfs(node.left, 'right', steps + 1)
+                if node.right:
+                    dfs(node.right, 'left', 1)
+            if fromNode == 'right':
+                if node.right:
+                    dfs(node.right, 'left', steps + 1)
+                if node.left:
+                    dfs(node.left, 'right', 1)
+                    
+        dfs(root, 'left', 0)
+        return length
+```
+
+- c++
+
+```c++
+class Solution {
+public:
+    int maxSteps = 0;
+    int longestZigZag(TreeNode* root) {
+        dfs(root, 1, 0);
+        return maxSteps;
+    }
+    
+    void dfs(TreeNode* node, int fromLeft, int steps) {
+        if (!node) return;
+        maxSteps = max(steps, maxSteps);
+        if (fromLeft == 1) {
+            dfs(node->left, 0, steps + 1);
+            dfs(node->right, 1, 1);
+        }
+        if (fromLeft == 0) {
+            dfs(node->right, 1, steps + 1);
+            dfs(node->left, 0, 1);
+        }
+    }
+};
+```
