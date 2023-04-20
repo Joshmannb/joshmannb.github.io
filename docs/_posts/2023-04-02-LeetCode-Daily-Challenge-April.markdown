@@ -1010,3 +1010,83 @@ public:
     }
 };
 ```
+
+---
+
+## Maximum Width of Binary Tree (662)
+
+#### 难度
+
+- `medium`
+
+#### 问题描述
+
+- [LeetCode](https://leetcode.com/problems/maximum-width-of-binary-tree/description/)
+
+#### 解题思路
+
+- BFS遍历树：
+  - 每次遍历一个level，记录该level的宽度（最右节点 - 最左节点 + 1）
+  - 对于节点`i`来说，它的子节点为`2 * i`以及`2 * i + 1`
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+  
+#### 代码
+
+- python
+
+```python
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        dqIdx = deque([1])
+        dqTree = deque([root])
+        res = 0
+        while dqTree:
+            res = max(res, max(dqIdx) - min(dqIdx) + 1)
+            for _ in range(len(dqTree)):
+                node = dqTree.popleft()
+                idx = dqIdx.popleft()
+                if node.left:
+                    dqTree.append(node.left)
+                    dqIdx.append(idx * 2)
+                if node.right:
+                    dqTree.append(node.right)
+                    dqIdx.append(idx * 2 + 1)
+        return res
+```
+
+- c++
+
+```c++
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+        deque<TreeNode*> dqTree = {root};
+        deque<int> dqIdx = {1};
+        int res = 0;
+        while (!dqTree.empty()) {
+            res = max(res, *max_element(dqIdx.begin(), dqIdx.end()) - *min_element(dqIdx.begin(), dqIdx.end()) + 1);
+            int size = dqTree.size();
+            int start = dqIdx.front();
+            for (int i = 0; i < size; i++) {
+                TreeNode* node = dqTree.front();
+                dqTree.pop_front();
+                long long idx = dqIdx.front() - start;  // prevent overflow
+                dqIdx.pop_front();
+                if (node->left != nullptr) {
+                    dqTree.push_back(node->left);
+                    dqIdx.push_back((long long) idx * 2);
+                }
+                if (node->right != nullptr) {
+                    dqTree.push_back(node->right);
+                    dqIdx.push_back((long long) idx * 2 + 1);
+                }
+            }
+        }
+        return res;
+    }
+};
+```
