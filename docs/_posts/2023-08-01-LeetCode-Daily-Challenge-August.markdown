@@ -1,9 +1,8 @@
 ---
 layout: post
-title:  "Template for posts"
-date:   2023-04-03 13:16:49 +0800
-categories: Template
-hidden: true
+title:  "LeetCode Daily Challenge August"
+date:   2023-08-01 13:16:49 +0800
+categories: LeetCode Algorithm
 katex: true
 author:
     name: 陈家惠
@@ -11,7 +10,7 @@ author:
 # category_archive_path: "/categories/"
 ---
 
-This post is for LeetCode Daily Challenge April
+This post is for LeetCode Daily Challenge August.
 
 {% include toc %}
 
