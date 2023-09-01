@@ -1255,7 +1255,6 @@ class Solution {
             }
         }
         
-        final int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         
         while (!deque.isEmpty()) {
             int[] location = deque.pop();
