@@ -55,8 +55,8 @@ Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be
 
 #### 复杂度
 
-- 时间复杂度：$O(\frac{n!}{k!(n-k)!})$
-- 空间复杂度：$O(\frac{n!}{k!(n-k)!})$
+- 时间复杂度：$$O(\frac{n!}{k!(n-k)!})$$
+- 空间复杂度：$$O(\frac{n!}{k!(n-k)!})$$
 
 #### 代码
 
@@ -126,8 +126,8 @@ Given an array `nums` of distinct integers, return _all the possible permutation
 
 #### 复杂度
 
-- 时间复杂度：$O(n\times{n!})$
-- 空间复杂度：$O(n!)$
+- 时间复杂度：$$O(n\times{n!})$$
+- 空间复杂度：$$O(n!)$$
 
 #### 代码
 
@@ -191,8 +191,8 @@ A mapping of digits to letters (just like on the telephone buttons) is given bel
 
 #### 复杂度
 
-- 时间复杂度：$O(4^n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(4^n)$$
+- 空间复杂度：$$O(n)$$
 
 #### 代码
 
@@ -262,8 +262,8 @@ Note that you are allowed to reuse a dictionary word.
 
 #### 复杂度
 
-- 时间复杂度：$O(mnk)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(mnk)$$
+- 空间复杂度：$$O(n)$$
 
 #### 代码
 
@@ -322,8 +322,8 @@ Given an integer `n`, return _all the structurally unique **BST'**s (binary sear
 
 #### 复杂度
 
-- 时间复杂度：$O(3^n)$
-- 空间复杂度：$O(3^n)$
+- 时间复杂度：$$O(3^n)$$
+- 空间复杂度：$$O(3^n)$$
 
 #### 代码
 
@@ -391,8 +391,8 @@ Given `n`, `goal`, and `k`, return _the number of possible playlists that you ca
 
 #### 复杂度
 
-- 时间复杂度：$O(n\times goal)$
-- 空间复杂度：$O(n\times goal)$
+- 时间复杂度：$$O(n\times goal)$$
+- 空间复杂度：$$O(n\times goal)$$
 
 #### 代码
 
@@ -466,8 +466,8 @@ You must write a solution in `O(log(m * n))` time complexity.
 
 #### 复杂度
 
-- 时间复杂度：$O(\log m + \log n)$
-- 空间复杂度：$O(m)$
+- 时间复杂度：$$O(\log m + \log n)$$
+- 空间复杂度：$$O(m)$$
 
 #### 代码
 
@@ -535,8 +535,8 @@ You must write an algorithm with `O(log n)` runtime complexity.
 
 #### 复杂度
 
-- 时间复杂度：$O(\log n)$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(\log n)$$
+- 空间复杂度：$$O(1)$$
 
 #### 代码
 
@@ -614,8 +614,8 @@ The maximum difference is max(|nums[1] - nums[4]|, |nums[2] - nums[5]|) = max(0,
 
 #### 复杂度
 
-- 时间复杂度：$O(n\log{n} + n\log{\max{(nums)}})$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(n\log{n} + n\log{\max{(nums)}})$$
+- 空间复杂度：$$O(1)$$
 
 #### 代码
 
@@ -698,8 +698,8 @@ You must decrease the overall operation steps as much as possible.
 
 #### 复杂度
 
-- 时间复杂度：$O(n)$, $\Omega(\log{n})$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(n)$, $\Omega(\log{n})$$
+- 空间复杂度：$$O(1)$$
 
 #### 代码
 
@@ -783,8 +783,8 @@ The answer is **guaranteed** to fit into a signed **32-bit** integer.
 
 #### 复杂度
 
-- 时间复杂度：$O(mn)$
-- 空间复杂度：$O(mn)$
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(mn)$$
 
 #### 代码
 
@@ -858,8 +858,8 @@ There are two ways to reach the bottom-right corner:
 
 #### 复杂度
 
-- 时间复杂度：$O(mn)$
-- 空间复杂度：$O(mn)$
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(mn)$$
 
 #### 代码
 
@@ -934,8 +934,8 @@ This partition is valid, so we return true.
 
 #### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
 
 #### 代码
 
@@ -1001,9 +1001,9 @@ Can you solve it without sorting?
 #### 复杂度
 
 - 时间复杂度：
-	- Average case: $O(n)$
-	- Worst case: $O(n^2)$
-- 空间复杂度：$O(n)$
+	- Average case: $$O(n)$$
+	- Worst case: $$O(n^2)$$
+- 空间复杂度：$$O(n)$$
 
 #### 代码
 
@@ -1052,11 +1052,11 @@ class Solution {
 
 ## Partition List (86)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 Given the `head` of a linked list and a value `x`, partition it such that all nodes **less than** `x` come before nodes **greater than or equal** to `x`.
 
@@ -1080,17 +1080,17 @@ You should **preserve** the original relative order of the nodes in each of the 
 - `-100 <= Node.val <= 100`
 - `-200 <= x <= 200`
 
-## 解题思路
+#### 解题思路
 
 - **双指针**
 新建两个空的链表，遍历原来链表的同时依照条件将节点加入两个链表中，最后将两个链表连接起来并返回。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
 
-## 代码
+#### 代码
 
 ```java
 class Solution {
@@ -1124,11 +1124,11 @@ class Solution {
 
 ## Sliding Window Maximum (239)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 You are given an array of integers `nums`, there is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.
 
@@ -1159,16 +1159,16 @@ Window position                Max
 - `-104 <= nums[i] <= 104`
 - `1 <= k <= nums.length`
 
-## 解题思路
+#### 解题思路
 
 - 维护一个**单调队列**来找到滑动窗口大小为`k`时的最大值。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(k)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(k)$$
 
-## 代码
+#### 代码
 
 ```java
 class Solution {
@@ -1192,11 +1192,11 @@ class Solution {
 
 ## 01 Matrix (542)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 Given an `m x n` binary matrix `mat`, return _the distance of the nearest_ `0` _for each cell_.
 
@@ -1225,17 +1225,17 @@ The distance between two adjacent cells is `1`.
 - `mat[i][j]` is either `0` or `1`.
 - There is at least one `0` in `mat`.
 
-## 解题思路
+#### 解题思路
 
 - **多源BFS**
 将所有元素为0的位置作为起始点做BFS。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(mn)$
-- 空间复杂度：$O(mn)$
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(mn)$$
 
-## 代码
+#### 代码
 
 ```java
 class Solution {
@@ -1279,11 +1279,11 @@ class Solution {
 
 ## Maximal Network Rank (1615)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 There is an infrastructure of `n` cities with some number of `roads` connecting these cities. Each `roads[i] = [ai, bi]` indicates that there is a bidirectional road between cities `ai` and `bi`.
 
@@ -1324,17 +1324,17 @@ Given the integer `n` and the array `roads`, return _the **maximal network rank*
 - `ai != bi`
 - Each pair of cities has **at most one** road connecting them.
 
-## 解题思路
+#### 解题思路
 
 - **枚举法**
 枚举所有的城市组合并返回最大值。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(E+V^2)$
-- 空间复杂度：$O(V)$
+- 时间复杂度：$$O(E+V^2)$$
+- 空间复杂度：$$O(V)$$
 
-## 代码
+#### 代码
 
 ```java
 class Solution {
@@ -1370,11 +1370,11 @@ class Solution {
 
 ## Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree (1489)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 Given a weighted undirected connected graph with `n` vertices numbered from `0` to `n - 1`, and an array `edges` where `edges[i] = [ai, bi, weighti]` represents a bidirectional and weighted edge between nodes `ai` and `bi`. A minimum spanning tree (MST) is a subset of the graph's edges that connects all vertices without cycles and with the minimum possible total edge weight.
 
@@ -1411,18 +1411,18 @@ The edges 2, 3, 4, and 5 are only part of some MSTs, therefore they are consider
 - `1 <= weighti <= 1000`
 - All pairs `(ai, bi)` are **distinct**.
 
-## 解题思路
+#### 解题思路
 
 - **最小生成树**，**并查集**
 - 利用**Kruskal's Algorithm**生成最小生成树。
 - 遍历每条边，若将该边移除后生成的最小生成树的权重变大，则该边**critical**；若权重不变，则将该边强制加入到最小生成树中，若权重还是相同，则该边**pseudo-critical**，否则该边不会存在在任何一个最小生成树中。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(E^2\times{\alpha({V})})$
-- 空间复杂度：$O(m + n)$
+- 时间复杂度：$$O(E^2\times{\alpha({V})})$$
+- 空间复杂度：$$O(m + n)$$
 
-## 代码
+#### 代码
 
 ```python
 class UnionFind:
@@ -1482,11 +1482,11 @@ class Solution:
 
 ## Sort Items by Groups Respecting Dependencies (1203)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 There are `n` items each belonging to zero or one of `m` groups where `group[i]` is the group that the `i`-th item belongs to and it's equal to `-1` if the `i`-th item belongs to no group. The items and the groups are zero indexed. A group can have no item belonging to it.
 
@@ -1520,17 +1520,17 @@ Return any solution if there is more than one solution and return an **empty lis
 - `i != beforeItems[i][j]`
 - `beforeItems[i]` does not contain duplicates elements.
 
-## 解题思路
+#### 解题思路
 
 - **拓扑排序**
 分别从`物体`和`群组`的角度进行拓扑排序，`群组`的拓扑排序决定了不同群组间的先后顺序，`物体`的拓扑排序决定了群组内的先后顺序，若任一排序为空，则无解。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(V + E)$
-- 空间复杂度：$O(V + E)$
+- 时间复杂度：$$O(V + E)$$
+- 空间复杂度：$$O(V + E)$$
 
-## 代码
+#### 代码
 
 ```python
 from typing import List
@@ -1596,11 +1596,11 @@ class Solution:
 
 ## Repeated Substring Pattern (459)
 
-## 难度
+#### 难度
 
 - **Easy**
 
-## 问题描述
+#### 问题描述
 
 Given a string `s`, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
 
@@ -1626,16 +1626,16 @@ Given a string `s`, check if it can be constructed by taking a substring of it a
 - `1 <= s.length <= 104`
 - `s` consists of lowercase English letters.
 
-## 解题思路
+#### 解题思路
 
 - **暴力解**
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n\times \sqrt n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(n\times \sqrt n)$$
+- 空间复杂度：$$O(n)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -1654,11 +1654,11 @@ class Solution:
 
 ## Excel Sheet Column Title (168)
 
-## 难度
+#### 难度
 
 - **Easy**
 
-## 问题描述
+#### 问题描述
 
 Given an integer `columnNumber`, return _its corresponding column title as it appears in an Excel sheet_.
 
@@ -1692,17 +1692,17 @@ AB -> 28
 
 - `1 <= columnNumber <= 231 - 1`
 
-## 解题思路
+#### 解题思路
 
 - **模除**
 本题类似将10进制的数转为26进制表达，tricky的点是这种26进制的表达中没有字母可以代表`0`，解决办法是只要当前的余数为0时，就将商减一，并将余数指向字母`z`。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(\log{n})$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(\log{n})$$
+- 空间复杂度：$$O(1)$$
 
-## 代码
+#### 代码
 
 ```java
 class Solution {
@@ -1736,11 +1736,11 @@ class Solution {
 
 ## Reorganize String (767)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 Given a string `s`, rearrange the characters of `s` so that any two adjacent characters are not the same.
 
@@ -1761,17 +1761,17 @@ Return _any possible rearrangement of_ `s` _or return_ `""` _if not possible_.
 - `1 <= s.length <= 500`
 - `s` consists of lowercase English letters.
 
-## 解题思路
+#### 解题思路
 
 - **优先队列**
 每次将剩余个数`最多`和`次多`的字母从优先队列中弹出，加进答案并修改剩余次数后再加入优先队列，若最后优先队列只有一个元素并次数大于1则无答案。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n\log k)$
-- 空间复杂度：$O(k)$
+- 时间复杂度：$$O(n\log k)$$
+- 空间复杂度：$$O(k)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -1803,11 +1803,11 @@ class Solution:
 
 ## Text Justification (68)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 Given an array of strings `words` and a width `maxWidth`, format the text such that each line has exactly `maxWidth` characters and is fully (left and right) justified.
 
@@ -1866,17 +1866,17 @@ Note that the second line is also left-justified because it contains only one wo
 - `1 <= maxWidth <= 100`
 - `words[i].length <= maxWidth`
 
-## 解题思路
+#### 解题思路
 
 - **模拟**，**双指针**
 当左右指针内的长度大于`maxWidth`时就新增一行，最后左右指针指的范围即为最后一行。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -1928,11 +1928,11 @@ class Solution:
 
 ## Interleaving String (97)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 Given strings `s1`, `s2`, and `s3`, find whether `s3` is formed by an **interleaving** of `s1` and `s2`.
 
@@ -1977,17 +1977,17 @@ Since s3 can be obtained by interleaving s1 and s2, we return true.
 - `0 <= s3.length <= 200`
 - `s1`, `s2`, and `s3` consist of lowercase English letters.
 
-## 解题思路
+#### 解题思路
 
 - **线性规划**
 DP的状态为`[idx1, idx2]`,idx3可从另外两个idx推出。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(mn)$
-- 空间复杂度：$O(mn)$
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(mn)$$
 
-## 代码
+#### 代码
 
 ```python
 from functools import cache
@@ -2014,11 +2014,11 @@ class Solution:
 
 ## Maximum Length of Pair Chain (646)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 You are given an array of `n` pairs `pairs` where `pairs[i] = [lefti, righti]` and `lefti < righti`.
 
@@ -2046,17 +2046,17 @@ You do not need to use up all the given intervals. You can select pairs in any o
 - `1 <= n <= 1000`
 - `-1000 <= lefti < righti <= 1000`
 
-## 解题思路
+#### 解题思路
 
 - **贪心**
 将`pairs`按照末尾元素从小到大排序，可以通过贪心的方法选取末尾元素最小的可行`pair`进行更新，遍历`pairs`后即可得到答案
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n\log n)$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(n\log n)$$
+- 空间复杂度：$$O(1)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -2077,11 +2077,11 @@ class Solution:
 
 ## Frog Jump (403)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 A frog is crossing a river. The river is divided into some number of units, and at each unit, there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
 
@@ -2108,17 +2108,17 @@ If the frog's last jump was `k` units, its next jump must be either `k - 1`, `k`
 - `stones[0] == 0`
 - `stones` is sorted in a strictly increasing order.
 
-## 解题思路
+#### 解题思路
 
 - **线性规划**
 DP的状态为`[stoneIdx, lastJump]`，若能跳到最后一块石头则返回`True`,否则返回`False`。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n^2)$
-- 空间复杂度：$O(n^2)$
+- 时间复杂度：$$O(n^2)$$
+- 空间复杂度：$$O(n^2)$$
 
-## 代码
+#### 代码
 
 ```python
 from typing import List
@@ -2153,11 +2153,11 @@ class Solution:
 
 ## Implement Stack using Queues (225)
 
-## 难度
+#### 难度
 
 - **Easy**
 
-## 问题描述
+#### 问题描述
 
 Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (`push`, `top`, `pop`, and `empty`).
 
@@ -2197,17 +2197,17 @@ myStack.empty(); // return False
 
 **Follow-up:** Can you implement the stack using only one queue?
 
-## 解题思路
+#### 解题思路
 
 - **模拟**
 队列为FIFO，栈为FILO。在模拟队列时，要确保新加入的元素要在队列头，做法为加入新元素后，将其他元素弹出再加入到队列尾。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：`pop`: $O(1)$, `push`: $O(n)$
-- 空间复杂度：$O(1)$
+- 时间复杂度：`pop`: $$O(1)$$, `push`: $$O(n)$$
+- 空间复杂度：$$O(1)$$
 
-## 代码
+#### 代码
 
 ```python
 from collections import deque
@@ -2236,11 +2236,11 @@ class MyStack:
 
 ## Minimum Penalty for a Shop (2483)
 
-## 难度
+#### 难度
 
 - **Medium**
 
-## 问题描述
+#### 问题描述
 
 You are given the customer visit log of a shop represented by a **0-indexed** string `customers` consisting only of characters `'N'` and `'Y'`:
 
@@ -2285,17 +2285,17 @@ Closing the shop at 2nd or 4th hour gives a minimum penalty. Since 2 is earlier,
 - `1 <= customers.length <= 105`
 - `customers` consists only of characters `'Y'` and `'N'`.
 
-## 解题思路
+#### 解题思路
 
 - **前缀和**
 遍历数组并维护一个前缀和，若元素为`Y`则前缀和-1，反之+1，返回前缀和最小时的坐标。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -2320,11 +2320,11 @@ class Solution:
 
 ## Minimum Replacements to Sort the Array (2366)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 You are given a **0-indexed** integer array `nums`. In one operation you can replace any element of the array with **any two** elements that **sum** to it.
 
@@ -2352,17 +2352,17 @@ There are 2 steps to sort the array in non-decreasing order. Therefore, we retur
 - `1 <= nums.length <= 105`
 - `1 <= nums[i] <= 109`
 
-## 解题思路
+#### 解题思路
 
 - **贪心**
 反向遍历数组，对于元素`i`，以`i + 1`为上界将元素`i`尽可能平均地做处理，产生的最小元素为新的上界。
 
-## 复杂度
+#### 复杂度
 
-- 时间复杂度：$O(n)$
-- 空间复杂度：$O(1)$
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
@@ -2386,11 +2386,11 @@ class Solution:
 
 ## Minimum Number of Taps to Open to Water a Garden (1326)
 
-## 难度
+#### 难度
 
 - **Hard**
 
-## 问题描述
+#### 问题描述
 
 There is a one-dimensional garden on the x-axis. The garden starts at the point `0` and ends at the point `n`. (i.e The length of the garden is `n`).
 
@@ -2426,18 +2426,18 @@ Opening Only the second tap will water the whole garden [0,5]
 - `ranges.length == n + 1`
 - `0 <= ranges[i] <= 100`
 
-## 解题思路
+#### 解题思路
 
 - **线性规划**
 将所有的`interval`按照左侧排序并归并，之后利用线性规划求解，DP的状态为`(idx)`。
 
-## 复杂度
+#### 复杂度
 
 假设n为元素个数，m为range
-- 时间复杂度：$O(mn)$
-- 空间复杂度：$O(n)$
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(n)$$
 
-## 代码
+#### 代码
 
 ```python
 class Solution:
