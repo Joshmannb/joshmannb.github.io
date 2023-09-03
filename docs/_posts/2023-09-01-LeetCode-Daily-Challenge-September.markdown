@@ -185,7 +185,7 @@ The test cases are generated so that the answer will be less than or equal to `2
 
 #### 解题思路
 
-- **线性规划**
+- **线性规划**  
 DP的状态为`(x, y)`，转移函数为`DP(x, y) = max(DP(x, y), DP(x - 1, y) + DP(x, y - 1))`。
 
 #### 复杂度
