@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "LeetCode Daily Challenge August"
+title:  "[LeetCode] Daily Challenge August"
 date:   2023-08-01 13:16:49 +0800
 categories: LeetCode Algorithm
 katex: true
