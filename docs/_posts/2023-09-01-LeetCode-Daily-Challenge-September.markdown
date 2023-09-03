@@ -26,24 +26,24 @@ Given an integer `n`, return _an array_ `ans` _of length_ `n + 1` _such that for
 
 **Example 1:**
 
-**Input:** n = 2
-**Output:** [0,1,1]
-**Explanation:**
-0 --> 0
-1 --> 1
+**Input:** n = 2  
+**Output:** [0,1,1]  
+**Explanation:**  
+0 --> 0  
+1 --> 1  
 2 --> 10
 
 **Example 2:**
 
-**Input:** n = 5
-**Output:** [0,1,1,2,1,2]
-**Explanation:**
-0 --> 0
-1 --> 1
-2 --> 10
-3 --> 11
-4 --> 100
-5 --> 101
+**Input:** n = 5  
+**Output:** [0,1,1,2,1,2]  
+**Explanation:**  
+0 --> 0  
+1 --> 1  
+2 --> 10  
+3 --> 11  
+4 --> 100  
+5 --> 101  
 
 **Constraints:**
 
@@ -51,7 +51,7 @@ Given an integer `n`, return _an array_ `ans` _of length_ `n + 1` _such that for
 
 #### 解题思路
 
-- **线性规划**
+- **线性规划**  
 对于元素`i`，它所含有的1的个数为`res[i // 2] + i % 2`。
 
 #### 复杂度
@@ -91,15 +91,15 @@ Return _the **minimum** number of extra characters left over if you break up_ `s
 
 **Example 1:**
 
-**Input:** s = "leetscode", dictionary = ["leet","code","leetcode"]
-**Output:** 1
-**Explanation:** We can break s in two substrings: "leet" from index 0 to 3 and "code" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1.
+**Input:** s = "leetscode", dictionary = ["leet","code","leetcode"]  
+**Output:** 1  
+**Explanation:** We can break s in two substrings: "leet" from index 0 to 3 and "code" from index 5 to 8. There is only 1 unused character (at index 4), so we return 1.  
 
 **Example 2:**
 
-**Input:** s = "sayhelloworld", dictionary = ["hello","world"]
-**Output:** 3
-**Explanation:** We can break s in two substrings: "hello" from index 3 to 7 and "world" from index 8 to 12. The characters at indices 0, 1, 2 are not used in any substring and thus are considered as extra characters. Hence, we return 3.
+**Input:** s = "sayhelloworld", dictionary = ["hello","world"]  
+**Output:** 3  
+**Explanation:** We can break s in two substrings: "hello" from index 3 to 7 and "world" from index 8 to 12. The characters at indices 0, 1, 2 are not used in any substring and thus are considered as extra characters. Hence, we return 3.  
 
 **Constraints:**
 
@@ -111,7 +111,7 @@ Return _the **minimum** number of extra characters left over if you break up_ `s
 
 #### 解题思路
 
-- **线性规划**
+- **线性规划**  
 DP的状态为`idx`，检查从各个idx出发可以利用的字母个数，答案为`s.length() - dp(0)`.
 
 #### 复杂度
