@@ -374,3 +374,87 @@ class Solution:
         
         return newHead
 ```
+
+---
+
+## Split Linked List in Parts (725)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+Given the `head` of a singly linked list and an integer `k`, split the linked list into `k` consecutive linked list parts.
+
+The length of each part should be as equal as possible: no two parts should have a size differing by more than one. This may lead to some parts being null.
+
+The parts should be in the order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal to parts occurring later.
+
+Return _an array of the_ `k` _parts_.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/06/13/split1-lc.jpg)
+
+**Input:** head = [1,2,3], k = 5  
+**Output:** [[1],[2],[3],[],[]]  
+**Explanation:**  
+The first element output[0] has output[0].val = 1, output[0].next = null.  
+The last element output[4] is null, but its string representation as a ListNode is [].
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/06/13/split2-lc.jpg)
+
+**Input:** head = [1,2,3,4,5,6,7,8,9,10], k = 3  
+**Output:** [[1,2,3,4],[5,6,7],[8,9,10]]  
+**Explanation:**  
+The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.  
+
+**Constraints:**
+
+- The number of nodes in the list is in the range `[0, 1000]`.
+- `0 <= Node.val <= 1000`
+- `1 <= k <= 50`
+
+#### 解题思路
+
+- **双指针**  
+首先将所有的节点存在一个数组中。维护一个双指针，双指针的长度为一个子链表的长度，将链表尾节点指向`null`，并将头节点加入答案数组中。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        temp = []
+        now = head
+        oldK = k
+        
+        while now:
+            temp.append(now)
+            now = now.next
+        
+        length = len(temp)
+        left = 0
+        res = []
+        
+        while length > 0:
+            right = left + math.ceil(length / k) - 1
+            length -= right - left + 1
+            k -= 1
+            temp[right].next = None
+            res.append(temp[left])
+            left = right + 1
+        
+        while len(res) < oldK:
+            res.append(None)
+        
+        return res
+```
