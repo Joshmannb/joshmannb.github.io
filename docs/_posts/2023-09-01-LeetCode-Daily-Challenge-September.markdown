@@ -458,3 +458,82 @@ class Solution:
         
         return res
 ```
+
+---
+
+## Reverse Linked List II (92)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+Given the `head` of a singly linked list and two integers `left` and `right` where `left <= right`, reverse the nodes of the list from position `left` to position `right`, and return _the reversed list_.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg)
+
+**Input:** head = [1,2,3,4,5], left = 2, right = 4  
+**Output:** [1,4,3,2,5]  
+
+**Example 2:**
+
+**Input:** head = [5], left = 1, right = 1  
+**Output:** [5]  
+
+**Constraints:**
+
+- The number of nodes in the list is `n`.
+- `1 <= n <= 500`
+- `-500 <= Node.val <= 500`
+- `1 <= left <= right <= n`
+
+**Follow up:** Could you do it in one pass?
+
+#### 解题思路
+
+- **链表**  
+遍历链表并记录当前的索引。当进入需要反转的区域时，记录`该区域前的节点`与`该区域的第一个节点`，反转该区域后，将`该区域前的节点`接到`该区域最后一个节点`，将`该区域的第一个节点`接到`该区域之后的第一个节点`。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        if left == right:
+            return head
+        
+        prehead = ListNode(val=0, next=head)
+        now = prehead
+        idx = 0
+        
+        while idx < left - 1:
+            now = now.next
+            idx += 1
+        
+        prev = now
+        beforeNode = now
+        now = now.next
+        lastNode = now
+        idx += 1
+        
+        while idx <= right:
+            newNow = now.next
+            if idx != left:
+                now.next = prev
+            prev = now
+            now = newNow
+            idx += 1
+        
+        beforeNode.next = prev
+        lastNode.next = now
+
+        return prehead.next
+```
