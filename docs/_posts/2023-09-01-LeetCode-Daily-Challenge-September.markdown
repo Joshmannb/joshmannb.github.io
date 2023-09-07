@@ -10,7 +10,7 @@ author:
 # category_archive_path: "/categories/"
 ---
 
-This post is for LeetCode Daily Challenge August.
+This post is for LeetCode Daily Challenge September.
 
 {% include toc %}
 
