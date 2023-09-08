@@ -537,3 +537,57 @@ class Solution:
 
         return prehead.next
 ```
+
+---
+
+## Pascal's Triangle (118)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
+
+In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
+
+**Example 1:**
+
+**Input:** numRows = 5  
+**Output:** [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]  
+
+**Example 2:**
+
+**Input:** numRows = 1  
+**Output:** [[1]]  
+
+**Constraints:**
+
+- `1 <= numRows <= 30`
+
+#### 解题思路
+
+- **线性规划**  
+第`n`层的元素根据第`n-1`层的元素来构建。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n^2)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        output = []
+        for i in range(1, numRows + 1):
+            output.append([int(j in {0, i - 1}) for j in range(i)])
+        for i in range(1, numRows):
+            for j in range(1, len(output[i]) - 1):
+                output[i][j] = output[i-1][j] + output[i-1][j-1]
+        return output
+```
