@@ -591,3 +591,80 @@ class Solution:
                 output[i][j] = output[i-1][j] + output[i-1][j-1]
         return output
 ```
+
+---
+
+## Combination Sum IV (377)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+Given an array of **distinct** integers `nums` and a target integer `target`, return _the number of possible combinations that add up to_ `target`.
+
+The test cases are generated so that the answer can fit in a **32-bit** integer.
+
+**Example 1:**
+
+**Input:** nums = [1,2,3], target = 4  
+**Output:** 7  
+**Explanation:**  
+The possible combination ways are:  
+(1, 1, 1, 1)  
+(1, 1, 2)  
+(1, 2, 1)  
+(1, 3)  
+(2, 1, 1)  
+(2, 2)  
+(3, 1)  
+Note that different sequences are counted as different combinations.  
+
+**Example 2:**
+
+**Input:** nums = [9], target = 3  
+**Output:** 0  
+
+**Constraints:**
+
+- `1 <= nums.length <= 200`
+- `1 <= nums[i] <= 1000`
+- All the elements of `nums` are **unique**.
+- `1 <= target <= 1000`
+
+**Follow up:** What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?
+
+#### 解题思路
+
+- **线性规划**  
+dp的状态为`(val)`，转移函数为`dp_val = dp_val + dp_(val - num)`。
+
+#### 复杂度
+
+- 时间复杂度：$$O(mn)$$
+- 空间复杂度：$$O(mn)$$
+
+#### 代码
+
+```java
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        Map<Integer, Integer> memo = new HashMap<>();        
+        
+        return dfs(0, nums, target, memo);
+    }
+    
+    int dfs(int sumNow, int[] nums, int target, Map<Integer, Integer> memo) {
+        if (sumNow == target) { return 1; }
+        if (sumNow > target) { return 0; }
+        if (memo.containsKey(sumNow)) { return memo.get(sumNow); }
+        int res = 0;
+        for (var num : nums) {
+            res += dfs(sumNow + num, nums, target, memo);
+        }
+        memo.put(sumNow, res);
+        return res;
+    }
+}
+```
