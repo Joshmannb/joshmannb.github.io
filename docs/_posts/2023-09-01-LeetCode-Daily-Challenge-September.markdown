@@ -805,3 +805,71 @@ class Solution:
         
         return res
 ```
+
+---
+
+## Minimum Deletions to Make Character Frequencies Unique (1647)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+A string `s` is called **good** if there are no two different characters in `s` that have the same **frequency**.
+
+Given a string `s`, return _the **minimum** number of characters you need to delete to make_ `s` _**good**._
+
+The **frequency** of a character in a string is the number of times it appears in the string. For example, in the string `"aab"`, the **frequency** of `'a'` is `2`, while the **frequency** of `'b'` is `1`.
+
+**Example 1:**
+
+**Input:** s = "aab"  
+**Output:** 0  
+**Explanation:** `s` is already good.  
+
+**Example 2:**
+
+**Input:** s = "aaabbbcc"  
+**Output:** 2  
+**Explanation:** You can delete two 'b's resulting in the good string "aaabcc".  
+Another way it to delete one 'b' and one 'c' resulting in the good string "aaabbc".  
+
+**Example 3:**
+
+**Input:** s = "ceabaacb"  
+**Output:** 2  
+**Explanation:** You can delete both 'c's resulting in the good string "eabaab".  
+Note that we only care about characters that are still in the string at the end (i.e. frequency of 0 is ignored).  
+
+**Constraints:**
+
+- `1 <= s.length <= 105`
+- `s` contains only lowercase English letters.
+
+#### 解题思路
+
+- **贪心**  
+首先计算各个字母的出现次数并存入一个数组。遍历该数组并记录所见过的出现次数，若当前出现次数已出现过，则递减直到新的次数没出现过或等于0。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        temp = Counter(s)
+        freq = temp.values()
+        track = set()
+        res = 0
+        for val in freq:
+            while val in track and val > 0:
+                val -= 1
+                res += 1
+            track.add(val)
+        return res
+```
