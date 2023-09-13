@@ -873,3 +873,70 @@ class Solution:
             track.add(val)
         return res
 ```
+
+---
+
+## Candy (135)
+
+#### 难度
+
+- **Hard**
+
+#### 问题描述
+
+There are `n` children standing in a line. Each child is assigned a rating value given in the integer array `ratings`.
+
+You are giving candies to these children subjected to the following requirements:
+
+- Each child must have at least one candy.
+- Children with a higher rating get more candies than their neighbors.
+
+Return _the minimum number of candies you need to have to distribute the candies to the children_.
+
+**Example 1:**
+
+**Input:** ratings = [1,0,2]  
+**Output:** 5  
+**Explanation:** You can allocate to the first, second and third child with 2, 1, 2 candies respectively.  
+
+**Example 2:**
+
+**Input:** ratings = [1,2,2]  
+**Output:** 4  
+**Explanation:** You can allocate to the first, second and third child with 1, 2, 1 candies respectively.  
+The third child gets 1 candy because it satisfies the above two conditions.  
+
+**Constraints:**
+
+- `n == ratings.length`
+- `1 <= n <= 2 * 104`
+- `0 <= ratings[i] <= 2 * 104`
+
+#### 解题思路
+
+- **贪心**  
+分别从正向以及反向遍历数组。若对于索引`i`，若不满足题目条件则将`candies[i]`增加。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        n = len(ratings)
+        candies = [1 for _ in range(n)]
+        
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1] and candies[i] <= candies[i - 1]:
+                candies[i] = candies[i - 1] + 1
+
+        for i in range(n - 2, -1, -1):
+            if ratings[i] > ratings[i + 1] and candies[i] <= candies[i + 1]:
+                candies[i] = candies[i + 1] + 1
+        
+        return sum(candies)
+```
