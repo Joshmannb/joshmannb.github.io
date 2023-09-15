@@ -1015,3 +1015,91 @@ class Solution:
         dfs('JFK')
         return res[::-1]
 ```
+
+---
+
+## Min Cost to Connect All Points (1584)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+You are given an array `points` representing integer coordinates of some points on a 2D-plane, where `points[i] = [xi, yi]`.
+
+The cost of connecting two points `[xi, yi]` and `[xj, yj]` is the **manhattan distance** between them: `|xi - xj| + |yi - yj|`, where `|val|` denotes the absolute value of `val`.
+
+Return _the minimum cost to make all points connected._ All points are connected if there is **exactly one** simple path between any two points.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/08/26/d.png)
+
+**Input:** points = [[0,0],[2,2],[3,10],[5,2],[7,0]]  
+**Output:** 20  
+**Explanation:**   
+![](https://assets.leetcode.com/uploads/2020/08/26/c.png)  
+We can connect the points as shown above to get the minimum cost of 20.  
+Notice that there is a unique path between every pair of points.  
+
+**Example 2:**
+
+**Input:** points = [[3,12],[-2,5],[-4,1]]  
+**Output:** 18  
+  
+**Constraints:**
+
+- `1 <= points.length <= 1000`
+- `-106 <= xi, yi <= 106`
+- All pairs `(xi, yi)` are distinct.
+
+#### 解题思路
+
+- **最小生成树**  
+经典最小生成树题目。用Kruskal方法求解，利用并查集判断是否已连结。
+
+#### 复杂度
+
+- 时间复杂度：$$O(E\log E)$$
+- 空间复杂度：$$O(E)$$
+
+#### 代码
+
+```python
+class Solution:
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+        n = len(points)
+        edges = []
+        
+        for i in range(n):
+            for j in range(i):
+                a, b = points[i]
+                c, d = points[j]
+                dist = abs(a - c) + abs(b - d)
+                edges.append((i, j, dist))
+        
+        edges.sort(key=lambda x: x[2])
+        uf = UnionFind(n)
+        res = 0
+        
+        for fromNode, toNode, dist in edges:
+            if uf.find(fromNode) == uf.find(toNode):
+                continue
+            res += dist
+            uf.union(fromNode, toNode)
+        return res
+
+class UnionFind:
+    def __init__(self, size) -> None:
+        self.uf = [x for x in range(size)]
+        
+    def find(self, node):
+        if self.uf[node] != node:
+            self.uf[node] = self.find(self.uf[node])
+        return self.uf[node]
+    
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        self.uf[pa] = pb
+```
