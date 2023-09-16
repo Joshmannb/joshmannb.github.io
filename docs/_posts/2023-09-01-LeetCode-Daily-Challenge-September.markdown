@@ -1103,3 +1103,97 @@ class UnionFind:
         pa, pb = self.find(a), self.find(b)
         self.uf[pa] = pb
 ```
+
+---
+
+## Path With Minimum Effort (1631)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D array of size `rows x columns`, where `heights[row][col]` represents the height of cell `(row, col)`. You are situated in the top-left cell, `(0, 0)`, and you hope to travel to the bottom-right cell, `(rows-1, columns-1)` (i.e., **0-indexed**). You can move **up**, **down**, **left**, or **right**, and you wish to find a route that requires the minimum **effort**.
+
+A route's **effort** is the **maximum absolute difference** in heights between two consecutive cells of the route.
+
+Return _the minimum **effort** required to travel from the top-left cell to the bottom-right cell._
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/10/04/ex1.png)
+
+**Input:** heights = [[1,2,2],[3,8,2],[5,3,5]]  
+**Output:** 2  
+**Explanation:** The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.  
+This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.  
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2020/10/04/ex2.png)  
+
+**Input:** heights = [[1,2,3],[3,8,4],[5,3,5]]  
+**Output:** 1  
+**Explanation:** The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].  
+
+**Example 3:**
+
+![](https://assets.leetcode.com/uploads/2020/10/04/ex3.png)
+
+**Input:** heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]  
+**Output:** 0  
+**Explanation:** This route does not require any effort.  
+
+**Constraints:**
+
+- `rows == heights.length`
+- `columns == heights[i].length`
+- `1 <= rows, columns <= 100`
+- `1 <= heights[i][j] <= 106`
+
+#### 解题思路
+
+- **二分搜索**，**深度优先搜索**  
+利用二分搜索来确定答案，利用深度优先搜索来判定给定一个相对高度时，是否有可能路径存在。
+
+#### 复杂度
+
+- 时间复杂度：$$O(mn\log D)$$，D为最大高度
+- 空间复杂度：$$O(mn)$$
+
+#### 代码
+
+```python
+class Solution:
+    def minimumEffortPath(self, heights: List[List[int]]) -> int:
+        m, n = len(heights), len(heights[0])
+        vis = set()
+        vis.add((0, 0))
+
+        def dfs(x, y, diff):
+            if x == m - 1 and y == n - 1:
+                return True
+            vis[x][y] = True
+            for i, j in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                newX, newY = x + i, y + j
+                if newX < 0 or newY < 0 or newX >= m or newY >= n or vis[newX][newY] == True:
+                    continue
+                if abs(heights[newX][newY] - heights[x][y]) > diff:
+                    continue
+                if dfs(newX, newY, diff):
+                    return True
+            return False
+        
+        left, right = 0, 10**7
+        
+        while left < right:
+            vis = [[False] * n for _ in range(m)]
+            mid = (left + right) >> 1
+            if dfs(0, 0, mid):
+                right = mid
+            else:
+                left = mid + 1
+        
+        return left
+```
