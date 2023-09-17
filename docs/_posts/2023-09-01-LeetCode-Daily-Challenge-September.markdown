@@ -1244,8 +1244,8 @@ Return _the length of the shortest path that visits every node_. You may start a
 
 #### 复杂度
 
-- 时间复杂度：$O(n^2\times 2^n)$
-- 空间复杂度：$O(n\times 2^n)$
+- 时间复杂度：$$O(n^2\times 2^n)$$
+- 空间复杂度：$$O(n\times 2^n)$$
 
 #### 代码
 
