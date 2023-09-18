@@ -1200,6 +1200,85 @@ class Solution:
 
 ---
 
+## Shortest Path Visiting All Nodes (847)
+
+#### 难度
+
+- **Hard**
+
+#### 问题描述
+
+You have an undirected, connected graph of `n` nodes labeled from `0` to `n - 1`. You are given an array `graph` where `graph[i]` is a list of all the nodes connected with node `i` by an edge.
+
+Return _the length of the shortest path that visits every node_. You may start and stop at any node, you may revisit nodes multiple times, and you may reuse edges.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/05/12/shortest1-graph.jpg)
+
+**Input:** graph = [[1,2,3],[0],[0],[0]]  
+**Output:** 4  
+**Explanation:** One possible path is [1,0,2,0,3]  
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/05/12/shortest2-graph.jpg)
+
+**Input:** graph = [[1],[0,2,4],[1,3,4],[2],[1,2]]  
+**Output:** 4  
+**Explanation:** One possible path is [0,1,4,2,3]  
+
+**Constraints:**
+
+- `n == graph.length`
+- `1 <= n <= 12`
+- `0 <= graph[i].length < n`
+- `graph[i]` does not contain `i`.
+- If `graph[a]` contains `b`, then `graph[b]` contains `a`.
+- The input graph is always connected.
+
+#### 解题思路
+
+- **广度优先算法**，**位掩码**  
+本题的限制很小，所以直接用BFS暴力求解。BFS的状态为`idx, bitmask`。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n^2\times 2^n)$$
+- 空间复杂度：$$O(n\times 2^n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def shortestPathLength(self, graph: List[List[int]]) -> int:
+        n = len(graph)
+        dq = deque()
+        
+        for i in range(n):
+            dq.append((i, 1 << i))
+        
+        res = 0
+        vis = set()
+        
+        while dq:
+            for _ in range(len(dq)):
+                node, bitmask = dq.popleft()
+                for adj in graph[node]:
+                    newMask = bitmask | (1 << adj)
+                    if (adj, newMask) in vis:
+                        continue
+                    if newMask == (1 << n) - 1:
+                        return res + 1
+                    dq.append((adj, newMask))
+                    vis.add((adj, newMask))
+            res += 1
+        
+        return 0
+```
+
+---
+
 ## The K Weakest Rows in a Matrix (1337)
 
 #### 难度
