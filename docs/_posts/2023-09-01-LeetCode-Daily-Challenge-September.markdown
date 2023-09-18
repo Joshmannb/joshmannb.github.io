@@ -1197,3 +1197,114 @@ class Solution:
         
         return left
 ```
+
+---
+
+## The K Weakest Rows in a Matrix (1337)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+You are given an `m x n` binary matrix `mat` of `1`'s (representing soldiers) and `0`'s (representing civilians). The soldiers are positioned **in front** of the civilians. That is, all the `1`'s will appear to the **left** of all the `0`'s in each row.
+
+A row `i` is **weaker** than a row `j` if one of the following is true:
+
+- The number of soldiers in row `i` is less than the number of soldiers in row `j`.
+- Both rows have the same number of soldiers and `i < j`.
+
+Return _the indices of the_ `k` _**weakest** rows in the matrix ordered from weakest to strongest_.
+
+**Example 1:**
+
+**Input:** mat =   
+[[1,1,0,0,0],  
+ [1,1,1,1,0],  
+ [1,0,0,0,0],  
+ [1,1,0,0,0],  
+ [1,1,1,1,1]],   
+k = 3  
+**Output:** [2,0,3]  
+**Explanation:**   
+The number of soldiers in each row is:   
+- Row 0: 2   
+- Row 1: 4   
+- Row 2: 1 
+- Row 3: 2 
+- Row 4: 5 
+The rows ordered from weakest to strongest are [2,0,3,1,4].
+
+**Example 2:**
+
+**Input:** mat =   
+[[1,0,0,0],  
+ [1,1,1,1],  
+ [1,0,0,0],  
+ [1,0,0,0]],   
+k = 2  
+**Output:** [0,2]  
+**Explanation:**   
+The number of soldiers in each row is:   
+- Row 0: 1 
+- Row 1: 4 
+- Row 2: 1 
+- Row 3: 1 
+The rows ordered from weakest to strongest are [0,2,3,1].
+
+**Constraints:**
+
+- `m == mat.length`
+- `n == mat[i].length`
+- `2 <= n, m <= 100`
+- `1 <= k <= m`
+- `matrix[i][j]` is either 0 or 1.
+
+#### 解题思路
+
+- **二分查找**，**优先队列**  
+对于每一行，用二分查找快速找到`1`的数量，然后用优先队列来查找`1`数量最少以及编号最小的`k`个元素。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n\log n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```java
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>(
+            (a, b) -> {
+                if (a[0] != b[0]) { return a[0] - b[0]; }
+                else { return a[1] - b[1]; }
+            }
+        );
+        int[] res = new int[k];
+        
+        for (int i = 0; i < mat.length; i++) {
+            int[] row = mat[i];
+            int idx = countOnes(row);
+            pq.offer(new int[] {idx, i});
+        }
+        
+        for (int i = 0; i < res.length; i++) { res[i] = pq.poll()[1]; }
+        
+        return res;
+    }
+    
+    int countOnes (int[] row) {
+        int left = 0, right = row.length, mid;
+        
+        while (left < right) {
+            mid = left + (right - left) / 2;
+            if (row[mid] == 1) { left = mid + 1; }
+            else { right = mid; }
+        }
+        
+        return left;
+    }
+}
+```
