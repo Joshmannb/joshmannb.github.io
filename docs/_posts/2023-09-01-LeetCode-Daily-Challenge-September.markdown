@@ -1455,3 +1455,91 @@ class Solution:
         
         return slow
 ```
+
+---
+
+## Minimum Operations to Reduce X to Zero (1658)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+You are given an integer array `nums` and an integer `x`. In one operation, you can either remove the leftmost or the rightmost element from the array `nums` and subtract its value from `x`. Note that this **modifies** the array for future operations.
+
+Return _the **minimum number** of operations to reduce_ `x` _to **exactly**_ `0` _if it is possible__, otherwise, return_ `-1`.
+
+**Example 1:**
+
+**Input:** nums = [1,1,4,2,3], x = 5  
+**Output:** 2  
+**Explanation:** The optimal solution is to remove the last two elements to reduce x to zero.  
+
+**Example 2:**
+
+**Input:** nums = [5,6,7,8,9], x = 4  
+**Output:** -1  
+
+**Example 3:**
+
+**Input:** nums = [3,2,20,1,1,3], x = 10  
+**Output:** 5  
+**Explanation:** The optimal solution is to remove the last three elements and the first two elements (5 operations in total) to reduce x to zero.  
+
+**Constraints:**
+
+- `1 <= nums.length <= 105`
+- `1 <= nums[i] <= 104`
+- `1 <= x <= 109`
+
+#### 解题思路
+
+- **前缀和**，**哈希表**  
+利用前缀和和后缀和先将子数组和的结果储存起来，并将后缀和存入哈希表。遍历前缀和的元素，检查与`x`的差值是在哈希表中存在。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        n = len(nums)
+        pre = [0] * n
+        suff = [0] * n
+        pre[0] = nums[0]
+        suff[-1] = nums[-1]
+        track = dict()
+        
+        for i in range(1, n):
+            pre[i] = pre[i - 1] + nums[i]
+        
+        for i in range(n - 2, -1, -1):
+            suff[i] = suff[i + 1] + nums[i]
+            
+        suff.reverse()
+
+        for idx, val in enumerate(suff):
+            track[val] = idx
+        
+        res = 10**6 if x not in track else track[x] + 1
+
+        for i in range(-1, n):
+            leftVal = 0 if i == -1 else pre[i]
+            target = x - leftVal
+            if target == 0:
+                res = min(res, i + 1)
+                continue
+            idx = track[target] if target in track else -1
+            if idx == -1:
+                continue
+            if (i + 1 + idx + 1) >= n:
+                continue
+            res = min(res, i + 1 + idx + 1)
+        
+        return -1 if res == 10**6 else res
+```
