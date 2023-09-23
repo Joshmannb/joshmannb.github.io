@@ -1543,3 +1543,233 @@ class Solution:
         
         return -1 if res == 10**6 else res
 ```
+
+---
+
+## Median of Two Sorted Arrays (4)
+
+#### 难度
+
+- **Hard**
+
+#### 问题描述
+
+Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return **the median** of the two sorted arrays.
+
+The overall run time complexity should be `O(log (m+n))`.
+
+**Example 1:**
+
+**Input:** nums1 = [1,3], nums2 = [2]  
+**Output:** 2.00000  
+**Explanation:** merged array = [1,2,3] and median is 2.  
+
+**Example 2:**
+
+**Input:** nums1 = [1,2], nums2 = [3,4]  
+**Output:** 2.50000  
+**Explanation:** merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.  
+
+**Constraints:**
+
+- `nums1.length == m`
+- `nums2.length == n`
+- `0 <= m <= 1000`
+- `0 <= n <= 1000`
+- `1 <= m + n <= 2000`
+- `-106 <= nums1[i], nums2[i] <= 106`
+
+#### 解题思路
+
+- **二分搜索**  
+将数组归并后做二分搜索。
+
+#### 复杂度
+
+- 时间复杂度：$$O(m + n)$$
+- 空间复杂度：$$O(m + n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        nums = []
+        i, j = 0, 0
+
+        while i < len(nums1) or j < len(nums2):
+            if i >= len(nums1):
+                nums.append(nums2[j])
+                j += 1
+                continue
+            if j >= len(nums2):
+                nums.append(nums1[i])
+                i += 1
+                continue
+            if nums1[i] < nums2[j]:
+                nums.append(nums1[i])
+                i += 1
+            else:
+                nums.append(nums2[j])
+                j += 1
+        
+        if len(nums) % 2 == 1:
+            return nums[len(nums) // 2]
+        else:
+            return (nums[len(nums) // 2 - 1] + nums[len(nums) // 2]) / 2
+```
+
+---
+
+## Is Subsequence (392)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+Given two strings `s` and `t`, return `true` _if_ `s` _is a **subsequence** of_ `t`_, or_ `false` _otherwise_.
+
+A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `"ace"` is a subsequence of `"abcde"` while `"aec"` is not).
+
+**Example 1:**
+
+**Input:** s = "abc", t = "ahbgdc"  
+**Output:** true  
+
+**Example 2:**
+
+**Input:** s = "axc", t = "ahbgdc"  
+**Output:** false  
+
+**Constraints:**
+
+- `0 <= s.length <= 100`
+- `0 <= t.length <= 104`
+- `s` and `t` consist only of lowercase English letters.
+
+**Follow up:** Suppose there are lots of incoming `s`, say `s1, s2, ..., sk` where `k >= 109`, and you want to check one by one to see if `t` has its subsequence. In this scenario, how would you change your code?
+
+#### 解题思路
+
+- **双指针**  
+遍历`t`，若当前字母与`s`所指的字母相同，则指针+1。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        if not s:
+            return True
+        
+        idx = 0
+        
+        for letter in t:
+            if letter == s[idx]:
+                idx += 1
+            if idx == len(s):
+                return True
+        
+        return False
+```
+
+---
+
+## Longest String Chain (1048)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+You are given an array of `words` where each word consists of lowercase English letters.
+
+`wordA` is a **predecessor** of `wordB` if and only if we can insert **exactly one** letter anywhere in `wordA` **without changing the order of the other characters** to make it equal to `wordB`.
+
+- For example, `"abc"` is a **predecessor** of `"abac"`, while `"cba"` is not a **predecessor** of `"bcad"`.
+
+A **word chain** is a sequence of words `[word1, word2, ..., wordk]` with `k >= 1`, where `word1` is a **predecessor** of `word2`, `word2` is a **predecessor** of `word3`, and so on. A single word is trivially a **word chain** with `k == 1`.
+
+Return _the **length** of the **longest possible word chain** with words chosen from the given list of_ `words`.
+
+**Example 1:**
+
+**Input:** words = ["a","b","ba","bca","bda","bdca"]  
+**Output:** 4  
+**Explanation**: One of the longest word chains is ["a","ba","bda","bdca"].  
+
+**Example 2:**
+
+**Input:** words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]  
+**Output:** 5  
+**Explanation:** All the words can be put in a word chain ["xb", "xbc", "cxbc", "pcxbc", "pcxbcf"].  
+
+**Example 3:**
+
+**Input:** words = ["abcd","dbqca"]  
+**Output:** 1  
+**Explanation:** The trivial word chain ["abcd"] is one of the longest word chains.  
+["abcd","dbqca"] is not a valid word chain because the ordering of the letters is changed.  
+
+**Constraints:**
+
+- `1 <= words.length <= 1000`
+- `1 <= words[i].length <= 16`
+- `words[i]` only consists of lowercase English letters.
+
+#### 解题思路
+
+- **动态规划**  
+DP的状态为`word`，一个`word`只能向长度加一且能组成`chain`的`word`做转移。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n^2 * L)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def longestStrChain(self, words: List[str]) -> int:
+        dic = defaultdict(list)
+        
+        for word in words:
+            length = len(word)
+            dic[length].append(word)
+        
+        def isChain(a, b):
+            if not len(b) == len(a) + 1:
+                return False
+            j = 0
+            for i in range(len(b)):
+                if j == len(a):
+                    continue
+                if b[i] == a[j]:
+                    j += 1
+            return j == len(a)
+
+        @cache
+        def dfs(word):
+            length = len(word)
+            res = 0
+            for adj in dic[length + 1]:
+                if isChain(word, adj):
+                    res = max(res, 1 + dfs(adj))
+            return res
+        
+        res = 0
+        
+        for word in words:
+            res = max(res, 1 + dfs(word))
+        
+        return res
+```
