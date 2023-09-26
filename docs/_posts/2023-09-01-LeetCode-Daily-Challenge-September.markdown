@@ -1907,3 +1907,68 @@ class Solution {
     }
 }
 ```
+
+## Remove Duplicate Letters (316)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+Given a string `s`, remove duplicate letters so that every letter appears once and only once. You must make sure your result is
+
+**the smallest in lexicographical order**
+
+among all possible results.
+
+**Example 1:**
+
+**Input:** s = "bcabc"  
+**Output:** "abc"  
+
+**Example 2:**
+
+**Input:** s = "cbacdcbc"  
+**Output:** "acdb"  
+
+**Constraints:**
+
+- `1 <= s.length <= 104`
+- `s` consists of lowercase English letters.
+
+**Note:** This question is the same as 1081: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/](https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/)
+
+#### 解题思路
+
+- **单调栈**  
+题目要求回传字典序最小的答案，所以可以用一个`单调栈`的数据结构来维护答案。单调栈为单调递增栈，且只当当前栈顶元素大于当前元素且后续有另一个栈顶元素时弹出。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        stack = []
+        lastAppear = dict()
+        
+        for i in range(len(s)):
+            lastAppear[s[i]] = i
+        
+        vis = set()
+        
+        for i in range(len(s)):
+            if s[i] in vis:
+                continue
+            while stack and stack[-1] > s[i] and lastAppear[stack[-1]] > i and s[i] not in vis:
+                vis.remove(stack.pop())
+            stack.append(s[i])
+            vis.add(s[i])
+        
+        return ''.join(stack)
+```
