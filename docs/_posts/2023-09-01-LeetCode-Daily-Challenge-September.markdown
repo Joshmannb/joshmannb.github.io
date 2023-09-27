@@ -1972,3 +1972,93 @@ class Solution:
         
         return ''.join(stack)
 ```
+
+---
+
+## Decoded String at Index (880)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+You are given an encoded string `s`. To decode the string to a tape, the encoded string is read one character at a time and the following steps are taken:
+
+- If the character read is a letter, that letter is written onto the tape.
+- If the character read is a digit `d`, the entire current tape is repeatedly written `d - 1` more times in total.
+
+Given an integer `k`, return _the_ `kth` _letter (**1-indexed)** in the decoded string_.
+
+**Example 1:**
+
+**Input:** s = "leet2code3", k = 10  
+**Output:** "o"  
+**Explanation:** The decoded string is "leetleetcodeleetleetcodeleetleetcode".  
+The 10th letter in the string is "o".  
+
+**Example 2:**
+
+**Input:** s = "ha22", k = 5  
+**Output:** "h"  
+**Explanation:** The decoded string is "hahahaha".  
+The 5th letter is "h".  
+
+**Example 3:**
+
+**Input:** s = "a2345678999999999999999", k = 1  
+**Output:** "a"  
+**Explanation:** The decoded string is "a" repeated 8301530446056247680 times.  
+The 1st letter is "a".  
+
+**Constraints:**
+
+- `2 <= s.length <= 100`
+- `s` consists of lowercase English letters and digits `2` through `9`.
+- `s` starts with a letter.
+- `1 <= k <= 109`
+- It is guaranteed that `k` is less than or equal to the length of the decoded string.
+- The decoded string is guaranteed to have less than `263` letters.
+
+#### 解题思路
+
+- **数学**，**模拟**  
+用一个变量记录一个个解码密文时，明文的长度。当明文长度大于`k`时，进行反向编码，并找到第`k`个元素。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```java
+class Solution {
+    public String decodeAtIndex(String s, int k) {
+        long idx = 0;
+        int i;
+
+        for (i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                idx *= (s.charAt(i) - '0');
+            } else {
+                idx += 1;
+            }
+        }
+        
+        for (i--; i > -1; i--) {
+            if (Character.isDigit(s.charAt(i))) {
+                idx /= (s.charAt(i) - '0');
+                k %= idx;
+            } else {
+                if (k == 0 || idx == k) {
+                    return Character.toString(s.charAt(i));
+                }
+                idx--;
+            }
+        }
+        
+        return "0";
+    }
+}
+```
