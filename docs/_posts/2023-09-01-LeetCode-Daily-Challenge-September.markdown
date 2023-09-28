@@ -2062,3 +2062,59 @@ class Solution {
     }
 }
 ```
+
+---
+
+## Sort Array By Parity (905)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+Given an integer array `nums`, move all the even integers at the beginning of the array followed by all the odd integers.
+
+Return _**any array** that satisfies this condition_.
+
+**Example 1:**  
+
+**Input:** nums = [3,1,2,4]  
+**Output:** [2,4,3,1]  
+**Explanation:** The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.  
+
+**Example 2:**
+
+**Input:** nums = [0]  
+**Output:** [0]  
+
+**Constraints:**
+
+- `1 <= nums.length <= 5000`
+- `0 <= nums[i] <= 5000`
+
+#### 解题思路
+
+- **数组**  
+维护一个链表。遍历数组的同时，若元素为偶数则加到链表头，若元素为奇数则加到链表尾。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        dq = deque()
+        
+        for val in nums:
+            if val % 2 == 0:
+                dq.appendleft(val)
+            else:
+                dq.append(val)
+        
+        return list(dq)
+```
