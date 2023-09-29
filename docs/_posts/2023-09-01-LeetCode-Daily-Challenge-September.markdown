@@ -2118,3 +2118,71 @@ class Solution:
         
         return list(dq)
 ```
+
+---
+
+## Monotonic Array (896)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+An array is **monotonic** if it is either monotone increasing or monotone decreasing.
+
+An array `nums` is monotone increasing if for all `i <= j`, `nums[i] <= nums[j]`. An array `nums` is monotone decreasing if for all `i <= j`, `nums[i] >= nums[j]`.
+
+Given an integer array `nums`, return `true` _if the given array is monotonic, or_ `false` _otherwise_.
+
+**Example 1:**
+
+**Input:** nums = [1,2,2,3]  
+**Output:** true  
+
+**Example 2:**
+
+**Input:** nums = [6,5,4,4]  
+**Output:** true  
+
+**Example 3:**
+
+**Input:** nums = [1,3,2]  
+**Output:** false  
+
+**Constraints:**
+
+- `1 <= nums.length <= 105`
+- `-105 <= nums[i] <= 105`
+
+#### 解题思路
+
+- **数组**  
+遍历数组。首先决定到现在的元素前为单调递增还是单调递减，然后判断增加现在的元素后是否保持单调。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        if len(nums) == 1:
+            return True
+        
+        sign = None
+        
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                continue
+            if sign == None:
+                sign = (nums[i] - nums[i - 1]) > 0
+                continue
+            if (nums[i] - nums[i - 1] > 0) != sign:
+                return False
+        
+        return True
+```
