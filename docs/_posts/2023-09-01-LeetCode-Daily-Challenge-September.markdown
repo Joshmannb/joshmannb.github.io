@@ -2186,3 +2186,75 @@ class Solution:
         
         return True
 ```
+
+---
+
+## 132 Pattern (456)
+
+#### 难度
+
+- **Medium**
+
+#### 问题描述
+
+Given an array of `n` integers `nums`, a **132 pattern** is a subsequence of three integers `nums[i]`, `nums[j]` and `nums[k]` such that `i < j < k` and `nums[i] < nums[k] < nums[j]`.
+
+Return `true` _if there is a **132 pattern** in_ `nums`_, otherwise, return_ `false`_._
+
+**Example 1:**
+
+**Input:** nums = [1,2,3,4]  
+**Output:** false  
+**Explanation:** There is no 132 pattern in the sequence.  
+
+**Example 2:**
+
+**Input:** nums = [3,1,4,2]  
+**Output:** true  
+**Explanation:** There is a 132 pattern in the sequence: [1, 4, 2].  
+
+**Example 3:**
+
+**Input:** nums = [-1,3,2,0]  
+**Output:** true  
+**Explanation:** There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].  
+
+**Constraints:**
+
+- `n == nums.length`
+- `1 <= n <= 2 * 105`
+- `-109 <= nums[i] <= 109`
+
+#### 解题思路
+
+- **单调栈**  
+记录到各个索引时最小的元素是多少。反向遍历数组，若当前元素大于`min([:k])`，则满足`13`，若栈中的元素大于最小元素，则满足`12`，若栈中元素小于当前元素，则满足`32`，合起来满足`132`。
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(1)$$
+
+#### 代码
+
+```python
+class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        stack = deque()
+        minList = [10**8 for _ in range(len(nums))]
+        minList[0] = nums[0]
+        
+        for i in range(1, len(nums)):
+            minList[i] = min(minList[i - 1], nums[i])
+        
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] == minList[i]:
+                continue
+            while stack and stack[-1] <= minList[i]:
+                stack.pop()
+            if stack and stack[-1] < nums[i]:
+                return True
+            stack.append(nums[i])
+        
+        return False
+```
