@@ -162,3 +162,64 @@ class Solution:
         
         return AliceCount >= BobCount + 1
 ```
+
+---
+
+## Number of Good Pairs (1512)
+
+#### 难度
+
+- **Easy**
+
+#### 问题描述
+
+Given an array of integers `nums`, return _the number of **good pairs**_.
+
+A pair `(i, j)` is called _good_ if `nums[i] == nums[j]` and `i` < `j`.
+
+**Example 1:**
+
+**Input:** nums = [1,2,3,1,1,3]  
+**Output:** 4  
+**Explanation:** There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.  
+
+**Example 2:**
+
+**Input:** nums = [1,1,1,1]  
+**Output:** 6  
+**Explanation:** Each pair in the array are _good_.  
+
+**Example 3:**
+
+**Input:** nums = [1,2,3]  
+**Output:** 0  
+
+**Constraints:**
+
+- `1 <= nums.length <= 100`
+- `1 <= nums[i] <= 100`
+
+#### 解题思路
+
+- **计数**  
+遍历数组，记录到当前为止每个元素所出现的次数。对于当前元素`x`，`good pairs`次数增加`freq[x]`.
+
+#### 复杂度
+
+- 时间复杂度：$$O(n)$$
+- 空间复杂度：$$O(n)$$
+
+#### 代码
+
+```python
+class Solution:
+    def numIdenticalPairs(self, nums: List[int]) -> int:
+        freq = defaultdict(lambda: 0)
+        count = 0
+        
+        for num in nums:
+            count += freq[num]
+            freq[num] += 1
+        
+        return count
+```
